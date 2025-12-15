@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{user-base :: layout(~{::section})}">
+<section>
+
+    <!-- Top Categories -->
+    <div class="row g-2 mt-2">
+        <div class="col-6 col-md-2">
+            <div class="card text-center">
+                <div class="card-body fw-bold">
+                    Development [7]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card text-center">
+                <div class="card-body fw-bold">
+                    QA Testing [5]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card text-center">
+                <div class="card-body fw-bold">
+                    Networking [8]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card text-center">
+                <div class="card-body fw-bold">
+                    HR Team [4]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card text-center">
+                <div class="card-body fw-bold">
+                    Security [4]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card text-center">
+                <div class="card-body fw-bold">
+                    Sales Marketing [1]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Buttons -->
+    <div class="row g-2 mt-3">
+
+        <div class="col-6 col-md-2">
+            <div class="card bg-warning text-white text-center">
+                <div class="card-body fw-bold">
+                    Pending [9]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card bg-success text-white text-center">
+                <div class="card-body fw-bold">
+                    Approved [5]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card bg-info text-white text-center">
+                <div class="card-body fw-bold">
+                    Canceled [8]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card bg-danger text-white text-center">
+                <div class="card-body fw-bold">
+                    Denied [4]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card bg-primary text-white text-center">
+                <div class="card-body fw-bold">
+                    All [4]
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+            <div class="card bg-secondary text-white text-center">
+                <div class="card-body fw-bold">
+                    Reminder [1]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity + Birthdays -->
+    <div class="row mt-4">
+        <!-- Recent Activity Table -->
+       <div class="col-md-8">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="fw-bold">Recent Activity</h3>
+                    <hr>
+					<table class="table"style="width:100%">
+				        <thead>
+				            <tr>
+				                <th>S.No</th>  
+				                <th>Subject</th>
+				                <th>Date</th>
+				                <th>For Approval</th>
+				            </tr>
+				        </thead>
+				        <tbody class="table-group-divider">
+				            <tr th:each="e,i : ${statusList}">
+				                <td th:text="${i.index+1}">1</td>
+				                <td th:text="${e.subject}">Application</td>
+				                <td th:text="${e.addedDate}">2024-04-01</td>
+								<td>
+								    <span th:if="${e.status == 'PENDING'}"
+								          class="badge bg-warning text-dark">
+								        PENDING
+								    </span>
+								
+								    <span th:if="${e.status == 'APPROVED'}"
+								          class="badge bg-success">
+								        APPROVED
+								    </span>
+								
+								    <span th:if="${e.status == 'REJECTED'}"
+								          class="badge bg-danger">
+								        REJECTED
+								    </span>
+								
+								    <span th:if="${e.status == 'CANCELLED'}"
+								          class="badge bg-secondary">
+								        CANCELLED
+								    </span>
+								</td>
+				            </tr>
+				        </tbody>
+				    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Birthday -->
+        <div class="col-md-4">
+            <div class="card h-100">
+    		<div class="card-body">
+
+        <h3 class="fw-bold">Upcoming Birthday, Anniversary</h3>
+        <hr>
+
+       
+
+       
+
+        <div class="table-responsive">
+            <table class="table    text-start">
+
+                <tbody>
+
+                <!--  Birthdays -->
+                <tr th:each="e : ${upcomingBirthdays}">
+
+                    <td>
+                        <i class="fa-solid fa-cake-candles text-danger fs-5"></i>
+                    </td>
+					
+                    <td th:text="${e.empName}">Ram</td>
+
+                    <td th:text="${e.dob}">08-12-2025</td>
+                    
+                </tr>
+
+                <!--  Anniversaries -->
+                <tr th:each="e : ${upcomingAnniversaries}">
+
+                    <td>
+                        <i class="fa-solid fa-gift text-primary fs-5"></i>
+                    </td>
+
+                    <td th:text="${e.empName}">Sita</td>
+                    <td th:text="${e.doj}">15-04-2025</td>
+
+                    
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+        
+
+    </div>
+</div>
+
+</section>
+</html>

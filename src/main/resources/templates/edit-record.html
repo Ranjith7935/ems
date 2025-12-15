@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::section})}">
+
+<section>
+<div class="row">
+<div class="col-md-10 offset-md-1">
+<div class="card">
+<div class="card-body">
+
+<h4 class="text-center">Update Employee Registration Form</h4>
+<hr>
+
+<!-- Bind existing employee object -->
+<form th:action="@{/edit-employee}" 
+      th:object="${employee}" 
+      method="post">
+
+<!-- Hidden ID (VERY IMPORTANT for update) -->
+<input type="hidden" th:field="*{id}"/>
+
+<div class="row">
+
+<!-- Employee Name -->
+<div class="col-md-3 mt-2"><label>Employee Name</label></div>
+<div class="col-md-9 mt-2">
+  <input class="form-control" th:field="*{empName}" required>
+</div>
+
+<!-- Email -->
+<div class="col-md-3 mt-2"><label>Email</label></div>
+<div class="col-md-9 mt-2">
+  <input class="form-control" th:field="*{email}" required>
+</div>
+
+<!-- Gender -->
+<div class="col-md-3 mt-2"><label>Gender</label></div>
+<div class="col-md-9 mt-2">
+  <input type="radio" th:field="*{gender}" value="M"> Male
+  <input type="radio" th:field="*{gender}" value="F" class="ms-4"> Female
+</div>
+
+<!-- DOB -->
+<div class="col-md-3 mt-2"><label>DOB</label></div>
+<div class="col-md-9 mt-2">
+  <input type="date" class="form-control" th:field="*{dob}">
+</div>
+
+<!-- DOJ -->
+<div class="col-md-3 mt-2"><label>DOJ</label></div>
+<div class="col-md-9 mt-2">
+  <input type="date" class="form-control" th:field="*{doj}">
+</div>
+
+<!-- Mobile -->
+<div class="col-md-3 mt-2"><label>Mobile</label></div>
+<div class="col-md-9 mt-2">
+  <input class="form-control" th:field="*{mobile}">
+</div>
+
+<!-- Aadhaar -->
+<div class="col-md-3 mt-2"><label>Aadhaar</label></div>
+<div class="col-md-9 mt-2">
+  <input class="form-control" th:field="*{adhar}">
+</div>
+
+<!-- Account -->
+<div class="col-md-3 mt-2"><label>Account</label></div>
+<div class="col-md-9 mt-2">
+  <input class="form-control" th:field="*{account}">
+</div>
+
+<!-- Department -->
+<div class="col-md-3 mt-2"><label>Department</label></div>
+<div class="col-md-9 mt-2">
+<select class="form-select" th:field="*{department}">
+  <option value="">Select Department</option>
+  <option value="Development">Development</option>
+  <option value="QA & Automation Testing">QA & Automation Testing</option>
+  <option value="HR Team">HR Team</option>
+  <option value="Security">Security</option>
+  <option value="Sales & Marketing">Sales & Marketing</option>
+</select>
+</div>
+
+<!-- Designation -->
+<div class="col-md-3 mt-2"><label>Designation</label></div>
+<div class="col-md-9 mt-2">
+<select class="form-select" th:field="*{designation}">
+  <option value="">Select Designation</option>
+  <option value="Junior Developer">Junior Developer</option>
+  <option value="Senior Developer">Senior Developer</option>
+  <option value="QA Engineer">QA Engineer</option>
+  <option value="HR Executive">HR Executive</option>
+</select>
+</div>
+
+<!-- Previous Company -->
+<div class="col-md-3 mt-2"><label>Previous Company</label></div>
+<div class="col-md-9 mt-2">
+  <input class="form-control" th:field="*{previousCompany}">
+</div>
+
+<!-- PF -->
+<div class="col-md-3 mt-2"><label>PF Number</label></div>
+<div class="col-md-9 mt-2">
+  <input class="form-control" th:field="*{pfNumber}">
+</div>
+
+<!-- Salary -->
+<div class="col-md-3 mt-2"><label>Salary</label></div>
+<div class="col-md-9 mt-2">
+  <input class="form-control" th:field="*{salary}">
+</div>
+
+
+ <!-- Current Address -->
+        <div class="col-md-3 mt-2">
+          <label for="currAddress" class="form-label">Current Address</label>
+        </div>
+        <div class="col-md-9 mt-2">
+          <textarea class="form-control" rows="2" id="currAddress" name="currAddress" th:field="*{currAddress}"></textarea>
+        </div>
+
+        <!-- Permanent Address -->
+        <div class="col-md-3 mt-2">
+          <label for="perAddress"class="form-label">Permanent Address</label>
+        </div>
+        <div class="col-md-9 mt-2">
+          <textarea class="form-control" rows="2"id="perAddress" name="perAddress" th:field="*{perAddress}"></textarea>
+        </div>
+		<div class="col-md-3 mt-2">
+          <label for="role"class="form-label">Role</label>
+        </div>
+        <div class="col-md-9 mt-2">
+          <select class="form-select" th:field="*{role}" name="role" id="role">
+          	<option value="USER">User</option>
+          	<option value="ADMIN">Admin</option>
+          </select>
+        </div>
+        <!-- Active Switch -->
+		<div class="col-md-3 mt-3 d-flex align-items-center">
+		  <label class="form-label mb-0" for="active">Active</label>
+		</div>
+		
+		<div class="col-md-9 mt-3">
+		  <div class="form-check form-switch">
+		    <input class="form-check-input" type="checkbox" id="active" name="active" checked>
+		  </div>
+		</div>
+	<!-- Submit -->
+<div class="col-md-12 text-center mt-4">
+  <button type="submit" class="btn btn-primary px-4">
+    Update Employee
+  </button>
+</div>
+
+</div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+</html>

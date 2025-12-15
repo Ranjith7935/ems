@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::section})}">
+<section>
+
+<div class="container mt-5">
+
+    <table id="example" class="nowrap " style="width:100%">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Subject</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>For Approval</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="e : ${statusList}">
+
+                <td th:text="${e.id}">1</td>
+
+                <td th:text="${e.empName}">Mahima Devi</td>
+
+                <td th:text="${e.position}">System Architect</td>
+
+                <td th:text="${e.subject}">Application</td>
+
+                <td th:text="${e.text}">
+                    Hello Sir, I want 10 days leave because I am going for training.
+                </td>
+
+                <td th:text="${e.addedDate}">2024-04-01</td>
+	
+				<td>
+
+    <!-- ================= PENDING ================= -->
+    <span th:if="${e.status == 'PENDING'}">
+
+        <!-- APPROVE -->
+        <i th:onclick="|approved(${e.id},'APPROVED')|"
+           class="fas fa-check-circle"
+           style="color: green; cursor:pointer; font-size:18px;"
+           title="Approve"></i>
+
+        <!-- REJECT -->
+        <i th:onclick="|approved(${e.id},'REJECTED')|"
+           class="fas fa-times-circle"
+           style="color: red; cursor:pointer; font-size:18px; margin-left:10px;"
+           title="Reject"></i>
+
+        <!-- CANCEL -->
+        <i th:onclick="|approved(${e.id},'CANCELLED')|"
+           class="fas fa-ban"
+           style="color: #f1c40f; cursor:pointer; font-size:18px; margin-left:10px;"
+           title="Cancel"></i>
+
+    </span>
+
+    <!-- ================= APPROVED ================= -->
+    <span th:if="${e.status == 'APPROVED'}"
+          class="badge bg-success">
+        APPROVED
+    </span>
+
+    <!-- ================= REJECTED ================= -->
+    <span th:if="${e.status == 'REJECTED'}"
+          class="badge bg-danger">
+        REJECTED
+    </span>
+
+    <!-- ================= CANCELLED ================= -->
+    <span th:if="${e.status == 'CANCELLED'}"
+          class="badge bg-warning text-dark">
+        CANCELLED
+    </span>
+
+</td>
+				
+		
+
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+</section>
+</html>
