@@ -5,106 +5,85 @@
 
     <!-- Top Categories -->
     <div class="row g-2 mt-2">
-        <div class="col-6 col-md-2">
-            <div class="card text-center">
+
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2"
+             th:each="card : ${departmentCards}">
+            <div class="card text-center h-100">
                 <div class="card-body fw-bold">
-                    Development [7]
+                    <span th:text="${card.title}">Dept</span>
+                    [
+                    <span th:text="${card.count}">0</span>
+                    ]
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-2">
-            <div class="card text-center">
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <div class="card text-center h-100">
                 <div class="card-body fw-bold">
-                    QA Testing [5]
+                    Total Count
+                    [
+                    <span th:text="${totalcnt}">0</span>
+                    ]
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-2">
-            <div class="card text-center">
-                <div class="card-body fw-bold">
-                    Networking [8]
-                </div>
-            </div>
-        </div>
-
-        <div class="col-6 col-md-2">
-            <div class="card text-center">
-                <div class="card-body fw-bold">
-                    HR Team [4]
-                </div>
-            </div>
-        </div>
-
-        <div class="col-6 col-md-2">
-            <div class="card text-center">
-                <div class="card-body fw-bold">
-                    Security [4]
-                </div>
-            </div>
-        </div>
-
-        <div class="col-6 col-md-2">
-            <div class="card text-center">
-                <div class="card-body fw-bold">
-                    Sales Marketing [1]
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Status Buttons -->
     <div class="row g-2 mt-3">
 
-        <div class="col-6 col-md-2">
-            <div class="card bg-warning text-white text-center">
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="card bg-warning text-white text-center h-100">
                 <div class="card-body fw-bold">
-                    Pending [9]
+                    Pending [<span th:text="${pendingCount}">0</span>]
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-2">
-            <div class="card bg-success text-white text-center">
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="card bg-success text-white text-center h-100">
                 <div class="card-body fw-bold">
-                    Approved [5]
+                    Approved [<span th:text="${approvedCount}">0</span>]
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-2">
-            <div class="card bg-info text-white text-center">
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="card bg-info text-white text-center h-100">
                 <div class="card-body fw-bold">
-                    Canceled [8]
+                    Canceled [<span th:text="${cancelledCount}">0</span>]
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-2">
-            <div class="card bg-danger text-white text-center">
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="card bg-danger text-white text-center h-100">
                 <div class="card-body fw-bold">
-                    Denied [4]
+                    Denied [<span th:text="${deniedCount}">0</span>]
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-2">
-            <div class="card bg-primary text-white text-center">
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="card bg-primary text-white text-center h-100">
                 <div class="card-body fw-bold">
-                    All [4]
+                    All [<span th:text="${allCount}">0</span>]
                 </div>
             </div>
         </div>
 
-        <div class="col-6 col-md-2">
-            <div class="card bg-secondary text-white text-center">
+        <div class="col-6 col-sm-4 col-md-2">
+            <div class="card bg-secondary text-white text-center h-100">
                 <div class="card-body fw-bold">
-                    Reminder [1]
+                    Reminder [<span th:text="${reminder}">0</span>]
                 </div>
             </div>
         </div>
+
     </div>
+
 
     <!-- Recent Activity + Birthdays -->
     <div class="row mt-4">

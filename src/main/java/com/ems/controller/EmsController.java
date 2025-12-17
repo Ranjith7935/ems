@@ -40,7 +40,7 @@ public class EmsController {
 	private ComposeRepo composeRepo;
 
     
-    @GetMapping("/login")
+    @GetMapping({"/login","/"})
     public String login() {
         return "login";
     }
@@ -95,10 +95,10 @@ public class EmsController {
             composeRepo.findTop5ByOrderByCreatedDateDesc();
 
         // Set designation safely
-        statusList.forEach(k -> {
-            employeeRepo.findById(k.getParentUKid())
-                .ifPresent(emp -> k.setPosition(emp.getDesignation()));
-        });
+//        statusList.forEach(k -> {
+//            employeeRepo.findById(k.getParentUKid())
+//                .ifPresent(emp -> k.setPosition(emp.getDesignation()));
+//        });
         int reminder=employeeRepo.findUpcomingBirthdays().size()+ employeeRepo.findUpcomingAnniversaries().size();
         model.addAttribute("allCount",composeRepo.count());
         model.addAttribute("pendingCount", composeRepo.countByStatus("PENDING"));
@@ -241,25 +241,45 @@ public class EmsController {
     @GetMapping("/user-dashboard")
     public String userDashboard(Model model, HttpSession session) {
 
-        int userId = Integer.parseInt(session.getAttribute("userId").toString());
+    	Object uid = session.getAttribute("userId");
+        if (uid == null) {
+            return "redirect:/login";
+        }
+        int userId = Integer.parseInt(uid.toString());
 
         // Fetch only recent 5 records
         List<Compose> statusList =
             composeRepo.findTop5ByParentUKidOrderByCreatedDateDesc(userId);
+     
+        List<Object[]> deptCounts = employeeRepo.countByDepartment();
+        List<Map<String, Object>> departmentCards = new ArrayList<>();
 
-        statusList.forEach(k -> {
-            employeeRepo.findById(k.getParentUKid())
-                .ifPresent(emp -> k.setPosition(emp.getDesignation()));
-        });
+        for (Object[] row : deptCounts) {
+            departmentCards.add(
+                Map.of(
+                    "title", row[0],
+                    "count", row[1],
+                    "color", "light"
+                )
+            );
+        }
+        int reminder=employeeRepo.findUpcomingBirthdays().size()+ employeeRepo.findUpcomingAnniversaries().size();
 
+        model.addAttribute("departmentCards", departmentCards);
+        model.addAttribute("totalcnt", employeeRepo.count());
         model.addAttribute("statusList", statusList);
         model.addAttribute("upcomingBirthdays", employeeRepo.findUpcomingBirthdays());
         model.addAttribute("upcomingAnniversaries", employeeRepo.findUpcomingAnniversaries());
-        
+        model.addAttribute("reminder", reminder);
+        model.addAttribute("allCount", composeRepo.countByParentUKid(userId));
+        model.addAttribute("pendingCount", composeRepo.countByParentUKidAndStatus(userId, "PENDING"));
+        model.addAttribute("approvedCount", composeRepo.countByParentUKidAndStatus(userId, "APPROVED"));
+        model.addAttribute("cancelledCount", composeRepo.countByParentUKidAndStatus(userId, "CANCELLED"));
+        model.addAttribute("deniedCount", composeRepo.countByParentUKidAndStatus(userId, "REJECTED"));
+        model.addAttribute("reminder", reminder);
 
-            
-        
         return "user-dashboard";
+
     }
 
 

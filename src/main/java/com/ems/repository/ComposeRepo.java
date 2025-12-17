@@ -13,6 +13,10 @@ public interface ComposeRepo extends JpaRepository<Compose, Integer> {
 	
 	 List<Compose> findTop5ByOrderByCreatedDateDesc();
 	 
+	 long countByParentUKid(int parentUKid);
+
+	 long countByParentUKidAndStatus(int parentUKid, String status);
+	 
 	 long countByStatus(String status);
 	 long count();
 }
