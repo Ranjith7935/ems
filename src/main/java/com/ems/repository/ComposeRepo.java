@@ -9,9 +9,9 @@ import com.ems.entity.Compose;
 public interface ComposeRepo extends JpaRepository<Compose, Integer> {
 	 List<Compose> findByParentUKid(Integer parentUkid);
 	
-	 List<Compose> findTop5ByParentUKidOrderByCreatedDateDesc(Integer parentUkid);
+	 List<Compose> findTop10ByParentUKidOrderByCreatedDateDesc(Integer parentUkid);
 	
-	 List<Compose> findTop5ByOrderByCreatedDateDesc();
+	 List<Compose> findTop10ByOrderByCreatedDateDesc();
 	 
 	 long countByParentUKid(int parentUKid);
 

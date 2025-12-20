@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.ems.EmployeeManagementPortalApplication;
 import com.ems.entity.Compose;
 import com.ems.entity.CreatePost;
 import com.ems.entity.Employee;
@@ -79,7 +78,7 @@ public class EmsController {
 				return "login";
 			}
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block\
+			
 			System.err.println(e.getMessage());
 			return "redirect:login";
 		}
@@ -90,9 +89,9 @@ public class EmsController {
     @GetMapping("/dash-board")
     public String dashboard(Model model) {
 
-        //  Fetch recent 5 of all users
+        //  Fetch recent 10 of all users
         List<Compose> statusList =
-            composeRepo.findTop5ByOrderByCreatedDateDesc();
+            composeRepo.findTop10ByOrderByCreatedDateDesc();
 
         // Set designation safely
 //        statusList.forEach(k -> {
@@ -249,7 +248,7 @@ public class EmsController {
 
         // Fetch only recent 5 records
         List<Compose> statusList =
-            composeRepo.findTop5ByParentUKidOrderByCreatedDateDesc(userId);
+            composeRepo.findTop10ByParentUKidOrderByCreatedDateDesc(userId);
      
         List<Object[]> deptCounts = employeeRepo.countByDepartment();
         List<Map<String, Object>> departmentCards = new ArrayList<>();

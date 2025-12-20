@@ -43,13 +43,27 @@
     <form th:action="@{/home}" method="post">
 
         <label for="employeeId"class="mb-1">Employee Id</label>
-        <input type="text" name="employeeId" class="form-control mb-3" placeholder="Enter Employee ID" required>
+        <input type="text" name="employeeId" id="employeeId" class="form-control mb-3" placeholder="Enter Employee ID" required>
 
         <label class="mb-1">Password</label>
-        <input type="password" name="password" class="form-control mb-3" placeholder="Enter Password" required>
+        <input type="password" name="password" id="password" class="form-control mb-3" placeholder="Enter Password" required>
 
         <button class="btn btn-primary w-100 mb-3">Login</button>
-
+		<!-- Guest Login Buttons (Side by Side) -->
+		<div class="row g-2 mb-3">
+		    <div class="col-6">
+		        <button class="btn btn-outline-secondary w-100" id="guestuser">
+		            <i class="bi bi-person-badge"></i> Guest User
+		        </button>
+		    </div>
+		
+		    <div class="col-6">
+		        <button class="btn btn-outline-dark w-100" id="guestadmin">
+		            <i class="bi bi-shield-fill-check"></i> Guest Admin
+		        </button>
+		    </div>
+		</div>
+				
         <p class="text-center">
             Don't have an account ? <a href="/forgot-password">Forget Password</a>
         </p>
@@ -66,6 +80,23 @@
 
     </form>
 </div>
+<script>
+const form = document.getElementById("loginForm");
+const employeeId = document.getElementById("employeeId");
+const password = document.getElementById("password");
+
+document.getElementById("guestuser").addEventListener("click", () => {
+    employeeId.value = "EMP1";
+    password.value = "123456";
+    form.submit();
+});
+
+document.getElementById("guestadmin").addEventListener("click", () => {
+    employeeId.value = "EMP2";
+    password.value = "123456";
+    form.submit();
+});
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
