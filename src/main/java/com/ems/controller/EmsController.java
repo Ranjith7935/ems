@@ -72,7 +72,6 @@ public class EmsController {
 				}else {
 					return "redirect:/login";
 				}
-				
 			}
 			else {
 				return "login";

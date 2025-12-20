@@ -52,14 +52,14 @@
 		<!-- Guest Login Buttons (Side by Side) -->
 		<div class="row g-2 mb-3">
 		    <div class="col-6">
-		        <button class="btn btn-outline-secondary w-100" id="guestuser">
-		            <i class="bi bi-person-badge"></i> Guest User
+		        <button class="btn btn-outline-secondary w-100" id="guestadmin">
+		            <i class="bi bi-shield-fill-check "></i> Guest Admin
 		        </button>
 		    </div>
 		
 		    <div class="col-6">
-		        <button class="btn btn-outline-dark w-100" id="guestadmin">
-		            <i class="bi bi-shield-fill-check"></i> Guest Admin
+		        <button class="btn btn-outline-dark w-100" id="guestuser">
+		            <i class="bi bi-person-badge "></i> Guest User
 		        </button>
 		    </div>
 		</div>
@@ -85,13 +85,13 @@ const form = document.getElementById("loginForm");
 const employeeId = document.getElementById("employeeId");
 const password = document.getElementById("password");
 
-document.getElementById("guestuser").addEventListener("click", () => {
+document.getElementById("guestadmin").addEventListener("click", () => {
     employeeId.value = "EMP1";
     password.value = "123456";
     form.submit();
 });
 
-document.getElementById("guestadmin").addEventListener("click", () => {
+document.getElementById("guestuser").addEventListener("click", () => {
     employeeId.value = "EMP2";
     password.value = "123456";
     form.submit();
